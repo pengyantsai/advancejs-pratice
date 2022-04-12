@@ -31,7 +31,7 @@ function getMovies(age) {
   } else {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        reject({ text: "not allowed" });
+        reject(new Error("not allowed"));
       }, 1500);
     });
   }
