@@ -48,6 +48,21 @@ getData("peng")
   .catch((err) => {
     console.log(err);
   });
+
+//async await try catch
+
+async function showMovie() {
+  try {
+    const obj = await getData("peng");
+    //console.log(obj);
+    const movie = await getMovies(obj.age);
+    console.log(movie.text);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+showMovie();
 /*
 function getData(name, callback) {
   setTimeout(() => {
