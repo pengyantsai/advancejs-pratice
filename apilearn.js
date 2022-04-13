@@ -7,7 +7,7 @@ async function getJoke() {
   console.log(parsedData);
 }
 getJoke();
-*/
+
 let key = "9baa373013ff1f2c97362c1f2c7a13f5";
 let city = prompt("ennter the city name");
 let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
@@ -19,3 +19,5 @@ async function getWeather() {
 }
 
 getWeather();
+
+*/
