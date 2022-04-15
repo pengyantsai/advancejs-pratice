@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const ejs = require("ejs");
-const https = require("https");
-
+import ejs from "ejs";
+import https from "https";
+import fetch from "node-fetch";
 //api key
 let key = "9baa373013ff1f2c97362c1f2c7a13f5";
 
@@ -20,10 +20,16 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-app.get("/:city", (req, res) => {
+app.get("/:city", async (req, res) => {
   let { city } = req.params;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
+  let d = await fetch(url);
+  let djs = await d.json();
+  let { temp } = djs.main;
+  let newtemp = ktoc(temp);
+  res.render("weather.ejs", { djs, newtemp });
   // get request by node.js
+  /*
   https
     .get(url, (response) => {
       console.log("statusCode:", response.statusCode);
@@ -39,6 +45,7 @@ app.get("/:city", (req, res) => {
     .on("error", (e) => {
       console.error(e);
     });
+    */
 });
 
 app.listen(3000, () => {
